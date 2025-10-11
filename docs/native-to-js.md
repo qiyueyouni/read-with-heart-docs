@@ -1,6 +1,15 @@
 # Native to Javascript
 App暴露的Javascript方法，可以使用这些方法调用原生的组件！
 
+!!! note "命名规范说明"
+    文档中的方法支持多种命名格式，以下三种写法等价：
+    
+    - `App.xxx()` - 推荐使用
+    - `app.xxx()` - 小写形式
+    - `APP.xxx()` - 大写形式
+    
+    您可以根据个人习惯选择任意一种写法。
+
 ## log
 打印调试日志，等同于`console.log()`
 
