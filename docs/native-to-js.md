@@ -9,6 +9,38 @@ App暴露的Javascript方法，可以使用这些方法调用原生的组件！
     - `APP.xxx()` - 大写形式
     
     您可以根据个人习惯选择任意一种写法。
+=======
+## Document
+`v2.6.0 以上版本支持`
+
+HTML解析和操作，轻松实现数据提取和转换，遵循WHATWG HTML5 规范。
+
+=== "示例"
+
+    ```javascript
+    let html = "<html><head><title>Example</title></head>
+        <body><p>Hello!</p><p>Hi!</p></body></html>";
+
+    // 解析html
+    let document = app.doc(html, false);
+
+    // 获取标题
+    let title = document.title();
+    app.log(title);
+    
+    // 用 CSS 查询选择元素
+    let list = document.select("p")
+    list.forEach(element => {
+        // 获取内容
+        app.log(element.text());
+    });
+    ```
+=== "API"
+
+    | 参数 | 名称 | 类型 | 默认值 | 说明 |
+    |:---|:---|:---|:---|:---|
+    | html | 参数 | String | - | html内容 |
+    | clean | 参数 | Boolean | - | 清理HTML |
 
 ## log
 打印调试日志，等同于`console.log()`
@@ -146,6 +178,59 @@ App暴露的Javascript方法，可以使用这些方法调用原生的组件！
     | 参数 | 名称 | 类型 | 说明 |
     |:---|:---|:---|:---|
     | jsonObject | - | Object | 转换失败返回`null` |
+
+## strToBytes
+`v2.6.0 以上版本支持`
+
+将字符串转化成字节序列
+
+=== "示例"
+
+    ```javascript
+    let str = 'Hello!'
+    let bytes = App.strToBytes(str)
+    // [72,101,108,108,111,33]
+    ```
+=== "API"
+
+    - 请求
+
+    | 参数 | 名称 | 类型 | 默认值 | 说明 |
+    |:---|:---|:---|:---|:---|
+    | str | 字符串 | String | - | - |
+
+    - 响应
+
+    | 参数 | 名称 | 类型 | 说明 |
+    |:---|:---|:---|:---|
+    | bytes | - | Array | 转换失败返回`null` |
+
+## bytesToStr
+`v2.6.0 以上版本支持`
+
+将字节序列转化成字符串
+
+=== "示例"
+
+    ```javascript
+    let bytes = [72,101,108,108,111,33]
+    let str = App.bytesToStr(bytes, 'utf-8')
+    // Hello!
+    ```
+=== "API"
+
+    - 请求
+
+    | 参数 | 名称 | 类型 | 默认值 | 说明 |
+    |:---|:---|:---|:---|:---|
+    | bytes | 字节数列 | Array | - | - |
+    | code | 编码类型 | String | utf-8 | utf-8、gbk |
+
+    - 响应
+
+    | 参数 | 名称 | 类型 | 说明 |
+    |:---|:---|:---|:---|
+    | str | - | String | 转换失败返回`null` |
 
 ## time
 
@@ -365,6 +450,10 @@ App暴露的Javascript方法，可以使用这些方法调用原生的组件！
     // 解码
     let decodeData = App.base64.decode(encodeData);    
     App.log(encryptData); // Hello, World!
+
+    // 解码成Bytes v2.6.0以上支持
+    let decodeData = App.base64.decodeToBytes(encodeData);    
+    App.log(encryptData); // [72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100, 33]
     ```
 
 === "API"
@@ -381,6 +470,34 @@ App暴露的Javascript方法，可以使用这些方法调用原生的组件！
     |:---|:---|:---|:---|
     | data | - | String | 编码解码内容 |
 
+## GBK转UTF8转GBK
+`v2.6.0 以上版本支持`
+
+=== "示例"
+
+    ```javascript
+    let text = '你好！';
+    
+    // utf8转gbk
+    let gbkText = App.string.toGBK('utf8字符');
+    
+    // gbk转utf8
+    let utf8Text = App.string.toUTF8('gbk字符');
+    ```
+
+=== "API"
+
+    - 请求
+
+    | 参数 | 名称 | 类型 | 默认值 | 说明 |
+    |:---|:---|:---|:---|:---|
+    | text | 字符串 | String | - | - |
+
+    - 响应
+
+    | 参数 | 名称 | 类型 | 说明 |
+    |:---|:---|:---|:---|
+    | text | - | String | 对应的编码字符串 |
 
 ## Unicode 编码解码
 
