@@ -9,6 +9,8 @@ theme:
     - navigation.expand
 markdown_extensions:
   - tables
+  - admonition
+  - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -18,6 +20,17 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+nav:
+  - 首页: index.md
+  - Native to Javascript: native-to-js.md
+  - 正文富文本规则: content-richtext.md
+  - 自定义TTS: rules-tts.md
+  - Web写源开放接口: web-api.md
+  - 工具: tools.md
+  - 制作源:
+    - 关于制作源: 制作源/about.md
+    - 前置请求: 制作源/pre-request.md
+    - 规则说明: 制作源/rules-Introduction.md
 copyright: Copyright &copy; 2024 Read With Heart
 extra:
   social:
